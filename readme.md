@@ -14,3 +14,9 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 ```
+
+Url parsing with python:
+```
+import ulrlib.parse
+urllib.parse.quote(the_url_string)
+```
