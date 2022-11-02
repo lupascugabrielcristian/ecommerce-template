@@ -1,7 +1,26 @@
+import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import Head from "next/head";
+import Navbar from "../components/navbar";
 
 const Home: NextPage = () => {
+
+    const getAllCategories = async () => {
+        try {
+            const respJSON = await fetch("/api/categories");
+            const resp = await respJSON.json();
+            return resp;
+        }
+        catch(error) {
+            throw error;
+        }
+    };
+
+    // cache this data with the key AllCategoreiesWithProducts
+    const { isLoading, data } = useQuery( ["AllCategoriesWithProducts"], getAllCategories );
+
+    const categories = data?.categories;
+
     return (
         <div>
             <Head>
@@ -11,7 +30,17 @@ const Home: NextPage = () => {
             </Head>
 
             <main className="container mx-auto">
-                <h1 className="h-1">Hello</h1>
+            
+                <Navbar />
+                { isLoading  ? ( <Skelton /> ) :
+                (
+                    <>
+                        { categories && categories?.length > 0 && (
+                            <ProductGrid showLink={true} categories={categories} />
+                        ) }
+                    </>
+                )}
+                
             </main>
         </div>
     );
