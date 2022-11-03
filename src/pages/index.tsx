@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Navbar from "../components/navbar";
+import Skelton from "../components/skelton";
+import ProductGrid from "../components/productgrid";
 
 const Home: NextPage = () => {
 

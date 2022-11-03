@@ -5,8 +5,10 @@ import queryClient from '../lib/query';
 import '../styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
-  <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={false} />
-    <Component {...pageProps} />
-  </QueryClientProvider>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Component {...pageProps} />
+    </QueryClientProvider>
+  )
 }
