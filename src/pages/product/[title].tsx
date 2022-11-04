@@ -1,6 +1,7 @@
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
 import Head from "next/head";
+import NextImage from "next/image";
 import { useRouter } from "next/router";
 import Navbar from "../../components/navbar";
 import Skelton from "../../components/skelton";
@@ -28,7 +29,7 @@ const SingleProduct = () => {
     const { mutate, isLoading: mutationIsLoading } = useMutation(
         async (body:any) => {
             try {
-                const respJSON = await fetch("/api/create-checkcout-session", {
+                const respJSON = await fetch("/api/create-checkout-session", {
                     method: "POST",
                     body: JSON.stringify(body)
                 });
@@ -70,7 +71,48 @@ const SingleProduct = () => {
                 <Navbar />
 
                 {isLoading ? ( <Skelton />): (
-                    <div></div>
+                    <div className="bg-white">
+                        <div className="pt-6 pb-6 sm:pb-24">
+                            <div className="mx-auto mt-8">
+                                <div className="flex flex-col md:flex-row gap-x-8">
+                                    <div className="min-h-80 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:aspect-none lg:h-80">
+
+                                        <NextImage
+                                            layout="responsive" 
+                                            width="25"
+                                            height="25"
+                                            src={`${product.image}`}
+                                            alt={product.title}
+                                            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                                        />
+
+                                    </div>
+
+                                    <div className="lg:col-span-5 lg:col-start-8 mt-8 md:mt-0">
+                                        <h1 className="text-xl font-medium text-gray-900">{product.title}</h1>
+
+                                        <p className="text-xl font-light text-gray-700 mt-4">{product.description}</p>
+
+                                        <p className="text-xl font-normal text-gray-500 mt-4">RON {product.price}</p>
+
+                                        <button onClick={ () => mutate({
+                                            title: product.title,
+                                            image: product.image,
+                                            description: product.description,
+                                            price: product.price
+                                        }) }
+                                        disabled={mutationIsLoading}
+                                        type="button"
+                                        className="inline-flex items-center rounded-md border border-transparent bg-sky-800 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-sky-900  mt-4">
+                                            Buy Now
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 )}
             </main>
         </div>
