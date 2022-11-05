@@ -42,12 +42,11 @@ const ProductGrid = (props: IProductGrid) => {
                         {category?.products.map((product) => (
                             <div
                                 className="p-6 group rounded-lg border border-gray-200 bg-neutral-200"
-                                key={product.title}
-                            >
+                                key={product.title} >
+
                                 <div className="min-h-80 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:aspect-none lg:h-80">
                                     <NextImage
                                         priority={true}
-                                        layout="responsive"
                                         width="25"
                                         height="25"
                                         src={`${product.image}`}
@@ -55,6 +54,7 @@ const ProductGrid = (props: IProductGrid) => {
                                         className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                                     />
                                 </div>
+
                                 <div className="relative mt-2">
                                     <h3 className="text-sm font-medium text-gray-900">
                                         {product.title}
@@ -64,13 +64,14 @@ const ProductGrid = (props: IProductGrid) => {
                                     </p>
                                 </div>
                                 <div className="mt-6">
+
                                     <NextLink
-                                        href={`/product/${product.title}`}
-                                    >
+                                        href={`/product/${product.title}`} >
                                         <p className="relative flex items-center justify-center rounded-md border border-transparent bg-sky-800 py-2 px-8 text-sm font-medium text-white hover:bg-sky-900 hover:cursor-pointer">
                                             View More Details
                                         </p>
                                     </NextLink>
+
                                 </div>
                             </div>
                         ))}
