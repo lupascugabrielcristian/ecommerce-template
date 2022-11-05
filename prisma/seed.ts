@@ -6,6 +6,9 @@ import {
 } from "@ngneat/falso";
 import { PrismaClient } from "@prisma/client";
 
+// To use this run
+// npx prisma db seed
+
 const primsa = new PrismaClient();
 
 const main = async () => {
@@ -18,6 +21,7 @@ const main = async () => {
         for (let index = 0; index < fakeProducts.length; index++) {
             const product = fakeProducts[index];
             const productAdjective = randProductAdjective();
+            product.image = "https://placeimg.com/" + ( 100 + Math.floor( Math.random() * 400 )) + "/" + (100 + Math.floor( Math.random() * 500 )) + "/tech"
             await primsa.product.upsert({
                 where: {
                     title: `${productAdjective} ${product.title}`,
@@ -26,7 +30,7 @@ const main = async () => {
                     title: `${productAdjective} ${product.title}`,
                     description: product.description,
                     price: product.price,
-                    image: `${product.image}/tech`,
+                    image: product.image,
                     quantity: randNumber({ min: 10, max: 100 }),
                     category: {
                         connectOrCreate: {

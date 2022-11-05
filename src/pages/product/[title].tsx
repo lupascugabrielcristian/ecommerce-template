@@ -78,12 +78,11 @@ const SingleProduct = () => {
                                     <div className="min-h-80 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:aspect-none lg:h-80">
 
                                         <NextImage
-                                            width="25"
-                                            height="25"
+                                            width="600"
+                                            height="200"
                                             src={`${product.image}`}
                                             alt={product.title}
-                                            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                                        />
+                                            className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
 
                                     </div>
 

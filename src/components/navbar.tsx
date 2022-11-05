@@ -7,7 +7,15 @@ const Navbar = () => {
                 <div className="flex justify-start lg:w-0 lg:flex-1">
                     <h1 className="text-2xl">
                         <NextLink href="/" className="cursor-pointer">
-                            Ecomm App
+                            Template for a e-commerce app
+                            <div className="flex flex-col gap-2 mt-5 p-4 border-solid border-2 border-sky-800 rounded-lg" >
+                                <div className="text-sm">PlanetScale database</div>
+                                <div className="text-sm">Prisma library</div>
+                                <div className="text-sm">Vercel deployed</div>
+                                <div className="text-sm">Integration with Stripe payments</div>
+                                <div className="text-sm">Tailwing CSS for page styling</div>
+                                <div className="text-sm">NextJs</div>
+                            </div>
                         </NextLink>
                     </h1>
                 </div>
